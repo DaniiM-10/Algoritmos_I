@@ -66,39 +66,39 @@ void dividirLista(Lista _lista, Lista* _a, Lista* _b) {
     lento->siguiente = nullptr; // Desconecto la primera mitad de la segunda, para que _a no tengo la otra mitad de la lista original
 }
 
-Lista combinarLista(Lista a, Lista b) {
+Lista combinarLista(Lista _a, Lista _b) {
     Lista resultado = crearLista();
     Nodo* punteroResultado = nullptr;  // Puntero al último nodo añadido a la lista resultante
 
     // Inicializamos la cabecera de la lista resultado con el menor valor entre a y b
-    if (a.cabecera != nullptr && b.cabecera != nullptr) {
-        if (a.cabecera->dato <= b.cabecera->dato) {
-            resultado.cabecera = a.cabecera;
-            a.cabecera = a.cabecera->siguiente;
+    if (_a.cabecera != nullptr && _b.cabecera != nullptr) {
+        if (_a.cabecera->dato <= _b.cabecera->dato) {
+            resultado.cabecera = _a.cabecera;
+            _a.cabecera = _a.cabecera->siguiente;
         } else {
-            resultado.cabecera = b.cabecera;
-            b.cabecera = b.cabecera->siguiente;
+            resultado.cabecera = _b.cabecera;
+            _b.cabecera = _b.cabecera->siguiente;
         }
         punteroResultado = resultado.cabecera;
     }
 
     // Combinar listas mientras ambas no estén vacías
-    while (a.cabecera != nullptr && b.cabecera != nullptr) {
-        if (a.cabecera->dato <= b.cabecera->dato) {
-            punteroResultado->siguiente = a.cabecera;
-            a.cabecera = a.cabecera->siguiente;
+    while (_a.cabecera != nullptr && _b.cabecera != nullptr) {
+        if (_a.cabecera->dato <= _b.cabecera->dato) {
+            punteroResultado->siguiente = _a.cabecera;
+            _a.cabecera = _a.cabecera->siguiente;
         } else {
-            punteroResultado->siguiente = b.cabecera;
-            b.cabecera = b.cabecera->siguiente;
+            punteroResultado->siguiente = _b.cabecera;
+            _b.cabecera = _b.cabecera->siguiente;
         }
         punteroResultado = punteroResultado->siguiente;
     }
 
     // Agregar los nodos restantes de la lista no vacía
-    if (a.cabecera != nullptr) {
-        punteroResultado->siguiente = a.cabecera;
+    if (_a.cabecera != nullptr) {
+        punteroResultado->siguiente = _a.cabecera;
     } else {
-        punteroResultado->siguiente = b.cabecera;
+        punteroResultado->siguiente = _b.cabecera;
     }
 
     return resultado;
